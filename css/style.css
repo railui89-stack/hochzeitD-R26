@@ -498,15 +498,28 @@ main { min-height: 60vh; }
 }
 
 /* =========================================================
-   BLUMEN-ECKEN (dezente Verzierung, siehe img/floral-corner.svg)
+   BLUMEN-RAHMEN (Bänder oben/unten + große Eckcluster)
    ========================================================= */
-.floral-corner {
+.floral-band {
   position: fixed;
-  width: 130px;
-  height: 130px;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background-image: url("img/floral-band.svg");
+  background-repeat: repeat-x;
+  background-size: 480px 150px;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.9;
+}
+.floral-band.top { top: 0; background-position: top center; }
+.floral-band.bottom { bottom: 0; transform: scaleY(-1); background-position: top center; }
+
+.floral-corner {
+  position: fixed;
+  width: 240px;
+  height: 240px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .floral-corner.tl { top: 0; left: 0; }
@@ -519,8 +532,11 @@ main { min-height: 60vh; }
   z-index: 1;
 }
 
-@media (max-width: 640px) {
-  .floral-corner { width: 80px; height: 80px; }
+.page-shell, .section, .gate-card { position: relative; }
+
+@media (max-width: 780px) {
+  .floral-band { height: 90px; background-size: 300px 90px; }
+  .floral-corner { width: 140px; height: 140px; }
 }
 
 /* =========================================================
