@@ -1,13 +1,14 @@
 /* =========================================================
    DESIGN TOKENS
    ========================================================= */
+
 :root {
-  --ivory: #FFFFFF;      /* reinweißer Hintergrund */
-  --plum: #262A34;       /* Haupttext, dunkles Anthrazit-Navy */
-  --sage: #8FAE78;       /* gedämpftes Blumen-Grün */
-  --rose: #E7A6AC;       /* zartes Blüten-Rosa */
-  --gold: #E3B15A;       /* warmes Sonnenblumen-Gelb/Gold als Akzent */
-  --line: #ECE7DD;       /* Haarlinien, sehr helles Beige */
+  --ivory: #FFFFFF;
+  --plum: #262A34;
+  --sage: #8FAE78;
+  --rose: #E7A6AC;
+  --gold: #E3B15A;
+  --line: #ECE7DD;
 
   --font-display: "Cormorant Garamond", "Times New Roman", serif;
   --font-body: "Cormorant Garamond", "EB Garamond", Georgia, serif;
@@ -21,8 +22,15 @@
   --max-width: 1100px;
 }
 
+
+/* =========================================================
+   ACCESSIBILITY / REDUCED MOTION
+   ========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -30,9 +38,18 @@
   }
 }
 
-* { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -45,7 +62,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-img { max-width: 100%; display: block; }
+img {
+  max-width: 100%;
+  display: block;
+}
 
 a {
   color: inherit;
@@ -57,18 +77,36 @@ a {
   outline-offset: 3px;
 }
 
-h1, h2, h3 {
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3 {
   font-family: var(--font-display);
   font-weight: 500;
   margin: 0 0 var(--space-2);
   color: var(--plum);
 }
 
-h1 { font-size: clamp(2.6rem, 6vw, 4.2rem); font-style: italic; }
-h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); }
-h3 { font-size: clamp(1.3rem, 3vw, 1.6rem); }
+h1 {
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  font-style: italic;
+}
 
-p { margin: 0 0 var(--space-2); }
+h2 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+h3 {
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+}
+
+p {
+  margin: 0 0 var(--space-2);
+}
 
 .eyebrow {
   font-family: var(--font-body);
@@ -79,9 +117,11 @@ p { margin: 0 0 var(--space-2); }
   color: var(--sage);
 }
 
+
 /* =========================================================
-   ZIER-ELEMENTE: Monogramm & Fleuron-Trenner
+   ZIER-ELEMENTE
    ========================================================= */
+
 .monogram {
   width: 84px;
   height: 84px;
@@ -98,6 +138,7 @@ p { margin: 0 0 var(--space-2); }
   width: 100%;
   max-width: 260px;
 }
+
 .divider::before,
 .divider::after {
   content: "";
@@ -106,6 +147,7 @@ p { margin: 0 0 var(--space-2); }
   background: var(--gold);
   opacity: 0.55;
 }
+
 .divider .diamond {
   width: 7px;
   height: 7px;
@@ -114,9 +156,11 @@ p { margin: 0 0 var(--space-2); }
   flex-shrink: 0;
 }
 
+
 /* =========================================================
    LAYOUT / HEADER / NAV
    ========================================================= */
+
 .page-shell {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -172,7 +216,9 @@ p { margin: 0 0 var(--space-2); }
   color: var(--gold);
 }
 
-main { min-height: 60vh; }
+main {
+  min-height: 60vh;
+}
 
 .site-footer {
   text-align: center;
@@ -181,9 +227,11 @@ main { min-height: 60vh; }
   color: var(--sage);
 }
 
+
 /* =========================================================
    LANDING PAGE (home.html)
    ========================================================= */
+
 .hero {
   min-height: 72vh;
   display: flex;
@@ -196,8 +244,15 @@ main { min-height: 60vh; }
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero .names {
@@ -246,42 +301,60 @@ main { min-height: 60vh; }
   color: var(--sage);
 }
 
+
 /* =========================================================
    PASSWORT-SEITE (index.html)
    ========================================================= */
+
 .gate {
   min-height: 100vh;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-3);
+
+  /*
+     Abstand zum Blumenrahmen.
+     Der Inhalt bleibt dadurch innerhalb
+     des transparenten Bereichs.
+  */
+  padding: 120px 100px;
+
+  position: relative;
+  z-index: 1;
 }
 
 .gate-card {
   width: 100%;
-  max-width: 700px;
-  min-height: 520px;
-
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  max-width: 420px;
 
   text-align: center;
-  padding: 120px 150px;
 
-  background-color: var(--ivory);
-  background-image: url("../img/floral-frame.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
+  padding: var(--space-5) var(--space-4);
 
-  border: none;
+  border: 1px solid var(--line);
+
+  position: relative;
+
+  background: var(--ivory);
 }
 
+
+/*
+   Der alte goldene Innenrahmen bleibt erhalten.
+*/
+
 .gate-card::before {
-  display: none;
+  content: "";
+
+  position: absolute;
+  inset: 10px;
+
+  border: 1px solid var(--gold);
+
+  opacity: 0.35;
+
+  pointer-events: none;
 }
 
 .gate-card h1 {
@@ -289,10 +362,14 @@ main { min-height: 60vh; }
   margin-bottom: var(--space-1);
 }
 
-.gate-card .eyebrow { display: block; margin-bottom: var(--space-2); }
+.gate-card .eyebrow {
+  display: block;
+  margin-bottom: var(--space-2);
+}
 
 .gate-form {
   margin-top: var(--space-3);
+
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
@@ -301,12 +378,18 @@ main { min-height: 60vh; }
 .gate-form input[type="password"] {
   font-family: var(--font-body);
   font-size: 1.05rem;
+
   text-align: center;
+
   padding: 0.75rem 1rem;
+
   border: none;
   border-bottom: 1px solid var(--line);
+
   background: transparent;
+
   color: var(--plum);
+
   letter-spacing: 0.08em;
 }
 
@@ -319,17 +402,26 @@ main { min-height: 60vh; }
   font-family: var(--font-body);
   font-variant: small-caps;
   font-style: normal;
+
   letter-spacing: 0.16em;
   font-size: 0.95rem;
+
   background: var(--plum);
   color: var(--ivory);
+
   border: 1px solid var(--plum);
+
   padding: 0.85rem 1.5rem;
+
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
 }
 
-.btn:hover, .btn:focus-visible {
+.btn:hover,
+.btn:focus-visible {
   background: var(--gold);
   border-color: var(--gold);
 }
@@ -338,28 +430,45 @@ main { min-height: 60vh; }
   background: transparent;
   color: var(--plum);
 }
-.btn.btn-outline:hover { color: var(--ivory); }
+
+.btn.btn-outline:hover {
+  color: var(--ivory);
+}
 
 .gate-error {
   min-height: 1.4em;
+
   color: #A24C4C;
+
   font-size: 0.9rem;
+
   font-variant: small-caps;
   font-style: normal;
+
   letter-spacing: 0.08em;
 }
 
 .gate-error.shake {
   animation: shake 420ms ease;
 }
+
 @keyframes shake {
-  20%, 60% { transform: translateX(-6px); }
-  40%, 80% { transform: translateX(6px); }
+  20%,
+  60% {
+    transform: translateX(-6px);
+  }
+
+  40%,
+  80% {
+    transform: translateX(6px);
+  }
 }
+
 
 /* =========================================================
    ALLGEMEINE SEKTIONEN / KARTEN
    ========================================================= */
+
 .section {
   padding: var(--space-5) var(--space-3);
   max-width: var(--max-width);
@@ -383,7 +492,9 @@ main { min-height: 60vh; }
   padding: var(--space-3);
 }
 
-.card h3 { margin-bottom: var(--space-1); }
+.card h3 {
+  margin-bottom: var(--space-1);
+}
 
 .card .meta {
   font-variant: small-caps;
@@ -397,30 +508,42 @@ main { min-height: 60vh; }
 .card .map-link {
   display: inline-block;
   margin-top: var(--space-1);
+
   border-bottom: 1px solid var(--gold);
+
   font-variant: small-caps;
   font-style: normal;
+
   letter-spacing: 0.1em;
   font-size: 0.9rem;
 }
 
+
 /* =========================================================
    ABLAUF (Timeline)
    ========================================================= */
+
 .timeline {
   position: relative;
+
   max-width: 620px;
+
   margin: 0 auto;
+
   padding-left: var(--space-4);
 }
 
 .timeline::before {
   content: "";
+
   position: absolute;
+
   left: 6px;
   top: 6px;
   bottom: 6px;
+
   width: 1px;
+
   background: var(--line);
 }
 
@@ -429,32 +552,46 @@ main { min-height: 60vh; }
   padding-bottom: var(--space-4);
 }
 
-.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
 
 .timeline-item::before {
   content: "";
+
   position: absolute;
+
   left: calc(-1 * var(--space-4) + 1px);
   top: 6px;
+
   width: 11px;
   height: 11px;
+
   background: var(--gold);
+
   transform: rotate(45deg);
 }
 
 .timeline-item .time {
   font-family: var(--font-display);
   font-style: italic;
+
   font-size: 1.5rem;
+
   color: var(--gold);
+
   display: block;
 }
 
-.timeline-item h3 { margin: 0.15rem 0 0.3rem; }
+.timeline-item h3 {
+  margin: 0.15rem 0 0.3rem;
+}
+
 
 /* =========================================================
-   FAQ (Accordion)
+   FAQ
    ========================================================= */
+
 .faq-list {
   max-width: 700px;
   margin: 0 auto;
@@ -466,82 +603,267 @@ main { min-height: 60vh; }
 
 .faq-item summary {
   cursor: pointer;
+
   list-style: none;
+
   padding: var(--space-2) 0;
+
   font-family: var(--font-display);
+
   font-size: 1.25rem;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: var(--space-2);
 }
 
-.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
 
 .faq-item summary::after {
   content: "+";
+
   font-size: 1.4rem;
+
   color: var(--gold);
+
   flex-shrink: 0;
+
   transition: transform 0.25s ease;
 }
 
 .faq-item[open] summary::after {
-  content: "\2013"; /* – */
+  content: "\2013";
 }
 
 .faq-item .faq-answer {
   padding: 0 0 var(--space-3);
+
   color: var(--plum);
+
   opacity: 0.9;
 }
 
+
 /* =========================================================
-   RSVP-INFO (reiner Text, kein Formular)
+   RSVP-INFO
    ========================================================= */
+
 .rsvp-info {
   max-width: 520px;
+
   margin: 0 auto;
+
   text-align: center;
 }
 
+
 /* =========================================================
-   BLUMEN-RAHMEN (Bänder oben/unten + große Eckcluster)
+   BLUMEN-RAHMEN
+   =========================================================
+
+   Ein einziger Rahmen liegt über dem gesamten Browserfenster.
+
+   WICHTIG:
+   Die Datei muss hier liegen:
+
+       /img/floral-frame-responsive.svg
+
+   und diese CSS-Datei hier:
+
+       /css/style.css
+
+   Deshalb lautet der Pfad:
+
+       ../img/floral-frame-responsive.svg
    ========================================================= */
-.floral-band {
+
+.floral-frame {
   position: fixed;
-  left: 0;
-  width: 100%;
-  height: 150px;
-  background-image: url("img/floral-band.svg");
-  background-repeat: repeat-x;
-  background-size: 480px 150px;
+
+  inset: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  box-sizing: border-box;
+
+  /*
+     Die Blumen werden als vier Seiten
+     des Rahmens behandelt.
+  */
+  border-style: solid;
+  border-color: transparent;
+
+  /*
+     Desktop:
+     oben | rechts | unten | links
+  */
+  border-width: 120px 100px 120px 120px;
+
+  /*
+     Ausschnitt aus der SVG.
+     Diese Werte beziehen sich auf die
+     Originalgröße der SVG.
+  */
+  border-image-source: url("../img/floral-frame-responsive.svg");
+  border-image-slice: 155 172 147 211;
+
+  /*
+     Sichtbare Breite der vier Seiten.
+  */
+  border-image-width: 120px 100px 120px 120px;
+
+  /*
+     Die Seiten passen sich der Fensterbreite
+     und -höhe an.
+  */
+  border-image-repeat: stretch;
+
+  /*
+     Der Rahmen soll über der Webseite liegen,
+     der transparente Bereich lässt den Inhalt
+     trotzdem sichtbar.
+  */
   pointer-events: none;
-  z-index: 0;
+
+  z-index: 10;
 }
-.floral-band.top { top: 0; background-position: top center; }
-.floral-band.bottom { bottom: 0; transform: scaleY(-1); background-position: top center; }
 
 
-.site-header, main, .site-footer, .gate {
+/* =========================================================
+   Z-INDEX / INHALT
+   ========================================================= */
+
+.site-header,
+main,
+.site-footer,
+.gate {
   position: relative;
   z-index: 1;
 }
 
-.page-shell, .section, .gate-card { position: relative; }
-
-@media (max-width: 780px) {
-  .floral-band { height: 90px; background-size: 300px 90px; }
+.page-shell,
+.section,
+.gate-card {
+  position: relative;
 }
 
+
 /* =========================================================
-   RESPONSIVE
+   TABLET
    ========================================================= */
+
+@media (max-width: 780px) {
+
+  /*
+     Blumenrahmen etwas schmaler
+  */
+  .floral-frame {
+    border-width: 85px 70px 85px 70px;
+
+    border-image-width: 85px 70px 85px 70px;
+  }
+
+  /*
+     Passwortbereich etwas kompakter,
+     damit er nicht mit dem Rahmen kollidiert.
+  */
+  .gate {
+    padding: 90px 65px;
+  }
+}
+
+
+/* =========================================================
+   SMARTPHONE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .floral-frame {
+    border-width: 65px 55px 65px 55px;
+
+    border-image-width: 65px 55px 65px 55px;
+  }
+
+  .gate {
+    padding: 75px 50px;
+  }
+
+  .gate-card {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .monogram {
+    width: 70px;
+    height: 70px;
+  }
+
+  .gate-card h1 {
+    font-size: 1.7rem;
+  }
+}
+
+
+/* =========================================================
+   SEHR KLEINE HANDYS
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .floral-frame {
+    border-width: 55px 45px 55px 45px;
+
+    border-image-width: 55px 45px 55px 45px;
+  }
+
+  .gate {
+    padding: 65px 40px;
+  }
+
+  body {
+    font-size: 1.05rem;
+  }
+
+  .gate-card {
+    padding: var(--space-3) var(--space-2);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE NAVIGATION
+   ========================================================= */
+
 @media (max-width: 640px) {
-  .site-header { flex-direction: column; align-items: flex-start; }
-  .site-nav { justify-content: flex-start; gap: var(--space-2); }
-  .countdown { gap: var(--space-2); }
-  .countdown .num { font-size: 1.8rem; }
-  .timeline { padding-left: var(--space-3); }
-  .timeline-item::before { left: calc(-1 * var(--space-3) + 1px); }
+
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+    gap: var(--space-2);
+  }
+
+  .countdown {
+    gap: var(--space-2);
+  }
+
+  .countdown .num {
+    font-size: 1.8rem;
+  }
+
+  .timeline {
+    padding-left: var(--space-3);
+  }
+
+  .timeline-item::before {
+    left: calc(-1 * var(--space-3) + 1px);
+  }
 }
