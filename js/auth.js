@@ -9,7 +9,7 @@
 
   -> Passwort hier ändern:
 */
-const SITE_PASSWORD = "unsereHochzeit2026";
+const SITE_PASSWORD = "OktoberD&R!";
 
 const SESSION_KEY = "hochzeit_auth_ok";
 
