@@ -2,15 +2,15 @@
    DESIGN TOKENS
    ========================================================= */
 :root {
-  --ivory: #FAF6EF;      /* Papier-Hintergrund */
-  --plum: #3A2E32;       /* Haupttext, warmes Anthrazit-Pflaume */
-  --sage: #8B9A82;       /* gedämpftes Salbeigrün */
-  --rose: #C9A0A0;       /* zartes Altrosa */
-  --gold: #B08D57;       /* Antik-Gold für Linien & Monogramm */
-  --line: #E4DCCB;       /* Haarlinien, Pergamentton */
+  --ivory: #FFFFFF;      /* reinweißer Hintergrund */
+  --plum: #262A34;       /* Haupttext, dunkles Anthrazit-Navy */
+  --sage: #8FAE78;       /* gedämpftes Blumen-Grün */
+  --rose: #E7A6AC;       /* zartes Blüten-Rosa */
+  --gold: #E3B15A;       /* warmes Sonnenblumen-Gelb/Gold als Akzent */
+  --line: #ECE7DD;       /* Haarlinien, sehr helles Beige */
 
   --font-display: "Cormorant Garamond", "Times New Roman", serif;
-  --font-body: "EB Garamond", Georgia, serif;
+  --font-body: "Cormorant Garamond", "EB Garamond", Georgia, serif;
 
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -39,8 +39,9 @@ body {
   background: var(--ivory);
   color: var(--plum);
   font-family: var(--font-body);
-  font-size: 1.125rem;
-  line-height: 1.7;
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.8;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -71,6 +72,7 @@ p { margin: 0 0 var(--space-2); }
 
 .eyebrow {
   font-family: var(--font-body);
+  font-style: normal;
   font-variant: small-caps;
   letter-spacing: 0.18em;
   font-size: 0.95rem;
@@ -151,6 +153,7 @@ p { margin: 0 0 var(--space-2); }
 
 .site-nav a {
   font-variant: small-caps;
+  font-style: normal;
   letter-spacing: 0.14em;
   font-size: 0.95rem;
   padding-bottom: 3px;
@@ -203,6 +206,7 @@ main { min-height: 60vh; }
 
 .hero .date {
   font-variant: small-caps;
+  font-style: normal;
   letter-spacing: 0.2em;
   font-size: 1.05rem;
   color: var(--plum);
@@ -236,6 +240,7 @@ main { min-height: 60vh; }
 
 .countdown .label {
   font-variant: small-caps;
+  font-style: normal;
   letter-spacing: 0.12em;
   font-size: 0.85rem;
   color: var(--sage);
@@ -305,6 +310,7 @@ main { min-height: 60vh; }
 .btn {
   font-family: var(--font-body);
   font-variant: small-caps;
+  font-style: normal;
   letter-spacing: 0.16em;
   font-size: 0.95rem;
   background: var(--plum);
@@ -331,6 +337,7 @@ main { min-height: 60vh; }
   color: #A24C4C;
   font-size: 0.9rem;
   font-variant: small-caps;
+  font-style: normal;
   letter-spacing: 0.08em;
 }
 
@@ -372,6 +379,7 @@ main { min-height: 60vh; }
 
 .card .meta {
   font-variant: small-caps;
+  font-style: normal;
   letter-spacing: 0.1em;
   color: var(--sage);
   font-size: 0.9rem;
@@ -383,6 +391,7 @@ main { min-height: 60vh; }
   margin-top: var(--space-1);
   border-bottom: 1px solid var(--gold);
   font-variant: small-caps;
+  font-style: normal;
   letter-spacing: 0.1em;
   font-size: 0.9rem;
 }
@@ -486,6 +495,32 @@ main { min-height: 60vh; }
   max-width: 520px;
   margin: 0 auto;
   text-align: center;
+}
+
+/* =========================================================
+   BLUMEN-ECKEN (dezente Verzierung, siehe img/floral-corner.svg)
+   ========================================================= */
+.floral-corner {
+  position: fixed;
+  width: 130px;
+  height: 130px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.9;
+}
+
+.floral-corner.tl { top: 0; left: 0; }
+.floral-corner.tr { top: 0; right: 0; transform: scaleX(-1); }
+.floral-corner.bl { bottom: 0; left: 0; transform: scaleY(-1); }
+.floral-corner.br { bottom: 0; right: 0; transform: scale(-1, -1); }
+
+.site-header, main, .site-footer, .gate {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .floral-corner { width: 80px; height: 80px; }
 }
 
 /* =========================================================
