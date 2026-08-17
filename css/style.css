@@ -281,12 +281,7 @@ main { min-height: 60vh; }
 }
 
 .gate-card::before {
-  content: "";
-  position: absolute;
-  inset: 10px;
-  border: 1px solid var(--gold);
-  opacity: 0.35;
-  pointer-events: none;
+  display: none;
 }
 
 .gate-card h1 {
