@@ -709,7 +709,7 @@ main {
      Diese Werte beziehen sich auf die
      Originalgröße der SVG.
   */
-  border-image-source: url("../img/floral-frame-responsive.svg");
+  border-image-source: url("../img/floral-frame.svg");
   border-image-slice: 155 172 147 211;
 
   /*
