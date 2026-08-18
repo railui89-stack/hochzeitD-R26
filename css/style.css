@@ -544,18 +544,26 @@ main { min-height: 60vh; }
 }
 
 .floral-band.side {
+  top: 0;
+  height: 100%;
   width: 60px;
-  height: auto;
-  display: none;
+  overflow: hidden;
 }
+.floral-band.side.left { left: 0; }
+.floral-band.side.right { right: 0; }
 
-.floral-band.left-top { top: 0; left: 0; }
-.floral-band.left-bottom { bottom: 0; left: 0; }
-.floral-band.right-top { top: 0; right: 0; }
-.floral-band.right-bottom { bottom: 0; right: 0; }
+.floral-band.side img {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: auto;
+  display: block;
+}
+.floral-band.side.left img { left: 0; }
+.floral-band.side.right img { right: 0; }
 
 @media (min-width: 640px) {
-  .floral-band.side { display: block; width: 100px; }
+  .floral-band.side { width: 100px; }
 }
 
 @media (min-width: 1024px) {
@@ -575,25 +583,25 @@ main { min-height: 60vh; }
    zur Überlappung kommen. */
 .site-header {
   padding-top: var(--safe-v);
-  padding-left: var(--space-3);
-  padding-right: var(--space-3);
+  padding-left: 5.25rem;
+  padding-right: 5.25rem;
 }
 
 .section {
-  padding-left: var(--space-3);
-  padding-right: var(--space-3);
+  padding-left: 5.25rem;
+  padding-right: 5.25rem;
   padding-top: var(--space-4);
   padding-bottom: calc(var(--safe-v) + var(--space-3));
 }
 
-.hero { padding-left: var(--space-3); padding-right: var(--space-3); }
+.hero { padding-left: 5.25rem; padding-right: 5.25rem; }
 
 .site-footer { padding-bottom: var(--safe-v); }
 
-.gate { padding-top: var(--safe-v); padding-bottom: var(--safe-v); }
+.gate { padding-top: var(--safe-v); padding-bottom: var(--safe-v); padding-left: 5.25rem; padding-right: 5.25rem; }
 
 @media (min-width: 640px) {
-  /* Seitenstreifen ab hier sichtbar, 100px breit -> Puffer entsprechend */
+  /* Seitenstreifen ab hier 100px breit -> Puffer entsprechend */
   .site-header, .section, .hero, .gate { padding-left: 7.75rem; padding-right: 7.75rem; }
 }
 
