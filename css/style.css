@@ -557,6 +557,7 @@ main { min-height: 60vh; }
   top: 0;
   height: 100%;
   width: auto;
+  max-width: none;
   display: block;
 }
 .floral-band.side.left img { left: 0; }
