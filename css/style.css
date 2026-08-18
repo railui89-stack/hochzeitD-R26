@@ -643,3 +643,44 @@ main { min-height: 60vh; }
   .countdown .num { font-size: 1.8rem; }
   .schedule-title h1 { white-space: normal; }
 }
+
+/* =========================================================
+   DESKTOP-ANPASSUNGEN (ab 1024px)
+   – größerer Inhaltsbereich
+   – Menü fixiert, bleibt beim Scrollen sichtbar,
+    liegt direkt unter dem Blumenrand statt darunter verdeckt
+   ========================================================= */
+@media (min-width: 1024px) {
+  :root { --max-width: 1320px; }
+
+  .gate-card {
+    max-width: 640px;
+    padding: 5rem 4.5rem;
+  }
+  .gate-card h1 { font-size: 2.7rem; }
+  .gate-card p { font-size: 1.25rem; }
+  .gate-form input[type="password"] { font-size: 1.25rem; padding: 0.85rem 1rem; }
+  .btn { font-size: 1.05rem; padding: 1rem 1.9rem; }
+
+  .section-intro { max-width: 68ch; }
+  .hero .quote { max-width: 54ch; font-size: 1.3rem; }
+
+  .site-header {
+    position: fixed;
+    top: var(--safe-v);
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  /* main rückt an die Stelle, an der der (jetzt fixierte) Header
+     vorher im normalen Fluss stand, plus Platz für die Menüleiste */
+  main {
+    padding-top: calc(var(--safe-v) + 4.75rem);
+  }
+}
