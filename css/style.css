@@ -534,6 +534,8 @@ main { min-height: 60vh; }
   left: 0;
   width: 100%;
   height: auto;
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
 }
 
 .floral-band.bottom {
@@ -541,16 +543,27 @@ main { min-height: 60vh; }
   left: 0;
   width: 100%;
   height: auto;
+  -webkit-mask-image: linear-gradient(to top, black 55%, transparent 100%);
+  mask-image: linear-gradient(to top, black 55%, transparent 100%);
 }
 
 .floral-band.side {
   top: 0;
   height: 100%;
-  width: 60px;
+  width: 0;
+  display: none;
   overflow: hidden;
 }
-.floral-band.side.left { left: 0; }
-.floral-band.side.right { right: 0; }
+.floral-band.side.left {
+  left: 0;
+  -webkit-mask-image: linear-gradient(to right, black 55%, transparent 100%);
+  mask-image: linear-gradient(to right, black 55%, transparent 100%);
+}
+.floral-band.side.right {
+  right: 0;
+  -webkit-mask-image: linear-gradient(to left, black 55%, transparent 100%);
+  mask-image: linear-gradient(to left, black 55%, transparent 100%);
+}
 
 .floral-band.side img {
   position: absolute;
@@ -563,12 +576,16 @@ main { min-height: 60vh; }
 .floral-band.side.left img { left: 0; }
 .floral-band.side.right img { right: 0; }
 
-@media (min-width: 640px) {
-  .floral-band.side { width: 100px; }
+@media (min-width: 480px) {
+  .floral-band.side { display: block; width: 50px; }
+}
+
+@media (min-width: 768px) {
+  .floral-band.side { width: 90px; }
 }
 
 @media (min-width: 1024px) {
-  .floral-band.side { width: 160px; }
+  .floral-band.side { width: 150px; }
 }
 
 .site-header, main, .site-footer, .gate {
@@ -584,31 +601,36 @@ main { min-height: 60vh; }
    zur Überlappung kommen. */
 .site-header {
   padding-top: var(--safe-v);
-  padding-left: 5.25rem;
-  padding-right: 5.25rem;
+  padding-left: var(--space-3);
+  padding-right: var(--space-3);
 }
 
 .section {
-  padding-left: 5.25rem;
-  padding-right: 5.25rem;
+  padding-left: var(--space-3);
+  padding-right: var(--space-3);
   padding-top: var(--space-4);
   padding-bottom: calc(var(--safe-v) + var(--space-3));
 }
 
-.hero { padding-left: 5.25rem; padding-right: 5.25rem; }
+.hero { padding-left: var(--space-3); padding-right: var(--space-3); }
 
 .site-footer { padding-bottom: var(--safe-v); }
 
-.gate { padding-top: var(--safe-v); padding-bottom: var(--safe-v); padding-left: 5.25rem; padding-right: 5.25rem; }
+.gate { padding-top: var(--safe-v); padding-bottom: var(--safe-v); padding-left: var(--space-3); padding-right: var(--space-3); }
 
-@media (min-width: 640px) {
-  /* Seitenstreifen ab hier 100px breit -> Puffer entsprechend */
-  .site-header, .section, .hero, .gate { padding-left: 7.75rem; padding-right: 7.75rem; }
+@media (min-width: 480px) {
+  /* Seitenstreifen ab hier 50px breit -> Puffer entsprechend */
+  .site-header, .section, .hero, .gate { padding-left: 4.625rem; padding-right: 4.625rem; }
+}
+
+@media (min-width: 768px) {
+  /* Seitenstreifen ab hier 90px breit -> Puffer entsprechend */
+  .site-header, .section, .hero, .gate { padding-left: 7.125rem; padding-right: 7.125rem; }
 }
 
 @media (min-width: 1024px) {
-  /* Seitenstreifen ab hier 160px breit -> Puffer entsprechend */
-  .site-header, .section, .hero, .gate { padding-left: 11.5rem; padding-right: 11.5rem; }
+  /* Seitenstreifen ab hier 150px breit -> Puffer entsprechend */
+  .site-header, .section, .hero, .gate { padding-left: 10.875rem; padding-right: 10.875rem; }
 }
 
 /* =========================================================
