@@ -651,11 +651,19 @@ main { min-height: 60vh; }
     liegt direkt unter dem Blumenrand statt darunter verdeckt
    ========================================================= */
 @media (min-width: 1024px) {
-  :root { --max-width: 1320px; }
+  :root {
+    --max-width: 1320px;
+    /* engerer Puffer für den Desktop-Look, Menü rückt näher an die Blumen */
+    --safe-v: calc(var(--band-h) + 0.5rem);
+  }
+
+  /* Schrift überall spürbar größer (Basis 16px -> ~18px, alle
+     rem-basierten Größen skalieren automatisch mit) */
+  html { font-size: 112.5%; }
 
   .gate-card {
     max-width: 640px;
-    padding: 5rem 4.5rem;
+    padding: 4.5rem 4.5rem;
   }
   .gate-card h1 { font-size: 2.7rem; }
   .gate-card p { font-size: 1.25rem; }
@@ -671,16 +679,30 @@ main { min-height: 60vh; }
     left: 0;
     right: 0;
     z-index: 2;
-    padding-top: var(--space-2);
-    padding-bottom: var(--space-2);
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
     background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
   }
 
   /* main rückt an die Stelle, an der der (jetzt fixierte) Header
-     vorher im normalen Fluss stand, plus Platz für die Menüleiste */
+     vorher im normalen Fluss stand, plus kompakter Platz für die
+     Menüleiste selbst */
   main {
-    padding-top: calc(var(--safe-v) + 4.75rem);
+    padding-top: calc(var(--safe-v) + 3.25rem);
   }
+
+  /* Weniger Leerraum vor dem Footer: die große Sicherheits-Reserve
+     ist hier nicht nötig, der Footer selbst hält schon Abstand zu
+     den unteren Blumen */
+  .section { padding-bottom: 2.5rem; }
+  .site-footer { padding-top: 1rem; padding-bottom: var(--safe-v); }
+
+  /* etwas kompakter, damit möglichst viel ohne Scrollen passt */
+  .hero { min-height: 58vh; }
+
+  /* verhindert das "Überfedern" beim Scrollen über den Rand hinaus,
+     damit oben nie Leerraum über dem Menü sichtbar wird */
+  html, body { overscroll-behavior-y: none; }
 }
