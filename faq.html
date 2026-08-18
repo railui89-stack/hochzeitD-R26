@@ -1,88 +1,61 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ – Anna &amp; Thomas</title>
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body data-protected="true">
-  <img src="img/floral-frame.svg" alt="" class="floral-frame">
+/*
+  Einfacher Passwortschutz für eine statische GitHub-Pages-Seite.
 
+  WICHTIG: Das ist KEINE echte Sicherheit. Der Quellcode dieser Seite
+  ist auf GitHub öffentlich einsehbar, das Passwort steht im Klartext
+  unten in diesem File. Das reicht, um zufällige Besucher:innen und
+  Suchmaschinen fernzuhalten – aber nicht, um Inhalte wirklich geheim
+  zu halten. Wer den Link zum Repo hat, kann das Passwort im Code finden.
 
-  <header class="site-header">
-    <span class="site-logo">A &amp; T</span>
-    <nav class="site-nav" aria-label="Hauptnavigation">
-      <a href="home.html">Home</a>
-      <a href="locations.html">Locations</a>
-      <a href="ablauf.html">Ablauf</a>
-      <a href="faq.html" aria-current="page">FAQ</a>
-      <a href="rsvp.html">RSVP</a>
-    </nav>
-  </header>
+  -> Passwort hier ändern:
+*/
+const SITE_PASSWORD = "unsereHochzeit2026";
 
-  <main>
-    <section class="section">
-      <div class="section-intro">
-        <span class="eyebrow">Gut zu wissen</span>
-        <h2>Häufige Fragen</h2>
-      </div>
+const SESSION_KEY = "hochzeit_auth_ok";
 
-      <div class="faq-list">
-        <details class="faq-item" open>
-          <summary>Gibt es einen Dresscode?</summary>
-          <div class="faq-answer">
-            <p>Wir wünschen uns festliche Kleidung in gedeckten Farben. Da die Trauung im Freien stattfindet: bequeme Schuhe für Wiese und Kopfsteinpflaster einpacken.</p>
-          </div>
-        </details>
+/* Wird auf index.html (Passwort-Seite) aufgerufen */
+function initGate() {
+  const form = document.getElementById("gate-form");
+  const input = document.getElementById("gate-password");
+  const error = document.getElementById("gate-error");
 
-        <details class="faq-item">
-          <summary>Sind Kinder willkommen?</summary>
-          <div class="faq-answer">
-            <p>Wir feiern in kleinem Rahmen und haben uns entschieden, den Abend kinderfrei zu gestalten. Wir wissen, das ist nicht für alle einfach umzusetzen – sprecht uns gerne direkt an.</p>
-          </div>
-        </details>
+  if (!form) return;
 
-        <details class="faq-item">
-          <summary>Worüber freut ihr euch als Geschenk?</summary>
-          <div class="faq-answer">
-            <p>Eure Anwesenheit ist das größte Geschenk. Falls ihr uns dennoch etwas mitbringen möchtet, freuen wir uns über einen Beitrag zu unserer Flitterwochen-Kasse.</p>
-          </div>
-        </details>
+  // Falls schon eingeloggt, direkt weiterleiten
+  if (sessionStorage.getItem(SESSION_KEY) === "true") {
+    window.location.href = "home.html";
+    return;
+  }
 
-        <details class="faq-item">
-          <summary>Wie komme ich zur Location und wo parke ich?</summary>
-          <div class="faq-answer">
-            <p>Beide Orte liegen in Erftstadt, etwa acht Minuten Fahrzeit auseinander. Am Gutshof Rosenau gibt es ausreichend kostenlose Parkplätze, am Schloss Lindenhof ist die Zahl begrenzt – Fahrgemeinschaften helfen.</p>
-          </div>
-        </details>
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const value = input.value.trim();
 
-        <details class="faq-item">
-          <summary>Könnt ihr Übernachtungsmöglichkeiten empfehlen?</summary>
-          <div class="faq-answer">
-            <p>In der Nähe des Gutshofs gibt es mehrere Hotels und Pensionen. Eine Liste mit unseren Empfehlungen und einem reservierten Zimmerkontingent schicken wir euch separat zu.</p>
-          </div>
-        </details>
+    if (value === SITE_PASSWORD) {
+      sessionStorage.setItem(SESSION_KEY, "true");
+      window.location.href = "home.html";
+    } else {
+      error.textContent = "Falsches Passwort – bitte noch einmal versuchen.";
+      error.classList.remove("shake");
+      // Reflow erzwingen, damit die Animation erneut abgespielt wird
+      void error.offsetWidth;
+      error.classList.add("shake");
+      input.value = "";
+      input.focus();
+    }
+  });
+}
 
-        <details class="faq-item">
-          <summary>Bis wann muss ich zusagen?</summary>
-          <div class="faq-answer">
-            <p>Wir freuen uns über eure Rückmeldung über das RSVP-Formular auf dieser Seite bis spätestens sechs Wochen vor der Feier.</p>
-          </div>
-        </details>
-      </div>
-    </section>
-  </main>
+/* Wird auf allen geschützten Seiten (home, locations, ablauf, faq, rsvp) aufgerufen */
+function guardPage() {
+  if (sessionStorage.getItem(SESSION_KEY) !== "true") {
+    window.location.href = "index.html";
+  }
+}
 
-  <footer class="site-footer">
-    <div class="divider"><span class="diamond"></span></div>
-    Wir freuen uns auf euch — Anna &amp; Thomas
-  </footer>
-
-  <script src="js/auth.js"></script>
-  <script src="js/main.js"></script>
-</body>
-</html>
+document.addEventListener("DOMContentLoaded", function () {
+  initGate();
+  if (document.body.dataset.protected === "true") {
+    guardPage();
+  }
+});
