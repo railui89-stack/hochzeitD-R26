@@ -385,7 +385,7 @@ main { min-height: 60vh; }
   font-style: normal;
   letter-spacing: 0.1em;
   color: var(--sage);
-  font-size: 0.9rem;
+  font-size: 1.15rem;
   margin-bottom: var(--space-2);
 }
 
