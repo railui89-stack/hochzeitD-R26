@@ -4,7 +4,7 @@ function initCountdown() {
   if (!el) return;
 
   // -> Datum & Uhrzeit der Hochzeit hier eintragen
-  const weddingDate = new Date("2026-06-20T14:00:00");
+  const weddingDate = new Date("2026-10-10T17:00:00");
 
   const daysEl = document.getElementById("cd-days");
   const hoursEl = document.getElementById("cd-hours");
