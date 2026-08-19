@@ -655,27 +655,27 @@ main { min-height: 60vh; }
     --max-width: 1320px;
     /* engerer Puffer für den Desktop-Look, Menü rückt näher an die Blumen */
     --safe-v: calc(var(--band-h) + 0.5rem);
+    /* eigener, engerer Wert nur für die Menüposition: im mittleren/
+       rechten Bereich (wo das Menü sitzt) sind die Blumen deutlich
+       kürzer als am äußersten Rand, --safe-v wäre hier zu großzügig */
+    --nav-top: calc(100vw * 0.095 + 0.4rem);
   }
-
-  /* Schrift überall spürbar größer (Basis 16px -> ~18px, alle
-     rem-basierten Größen skalieren automatisch mit) */
-  html { font-size: 112.5%; }
 
   .gate-card {
     max-width: 640px;
     padding: 4.5rem 4.5rem;
   }
-  .gate-card h1 { font-size: 2.7rem; }
-  .gate-card p { font-size: 1.25rem; }
-  .gate-form input[type="password"] { font-size: 1.25rem; padding: 0.85rem 1rem; }
-  .btn { font-size: 1.05rem; padding: 1rem 1.9rem; }
+  .gate-card h1 { font-size: 2.5rem; }
+  .gate-card p { font-size: 1.15rem; }
+  .gate-form input[type="password"] { font-size: 1.15rem; padding: 0.85rem 1rem; }
+  .btn { font-size: 1rem; padding: 0.95rem 1.75rem; }
 
   .section-intro { max-width: 68ch; }
-  .hero .quote { max-width: 54ch; font-size: 1.3rem; }
+  .hero .quote { max-width: 54ch; font-size: 1.2rem; }
 
   .site-header {
     position: fixed;
-    top: var(--safe-v);
+    top: var(--nav-top);
     left: 0;
     right: 0;
     z-index: 2;
@@ -690,7 +690,7 @@ main { min-height: 60vh; }
      vorher im normalen Fluss stand, plus kompakter Platz für die
      Menüleiste selbst */
   main {
-    padding-top: calc(var(--safe-v) + 3.25rem);
+    padding-top: calc(var(--nav-top) + 3.25rem);
   }
 
   /* Weniger Leerraum vor dem Footer: die große Sicherheits-Reserve
