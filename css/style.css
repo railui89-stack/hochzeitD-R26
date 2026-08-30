@@ -706,3 +706,12 @@ main { min-height: 60vh; }
      damit oben nie Leerraum über dem Menü sichtbar wird */
   html, body { overscroll-behavior-y: none; }
 }
+/* =========================================================
+   BILD ZWISCHEN NAMEN UND DATUM
+   ========================================================= */
+.couple-image {
+  display: block;
+  width: 220px;
+  height: auto;
+  margin: 0.5rem auto 1rem;
+}
